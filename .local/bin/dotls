@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Run the dotty language server in stdio mode for the current scala project
+# Requires coursier to run the LSP program class
+
+# File that contains the name of the dotty IDE artifact
+ARTIFACT_FILE="./.dotty-ide-artifact"
+# Language server program class
+LSP_CLASS="dotty.tools.languageserver.Main"
+
+# Start in the argument directory if provided, otherwise the working directory
+cd ${1:-.}
+
+# If the artifact stub file isn't found in the current directory, go up
+# until it is found
+while [[ ! -f "$ARTIFACT_FILE" ]] && [[ "$PWD" != "/" ]]; do
+    cd ..
+done
+
+# If the working directory is the root of the filesystem and the file
+# is not found, exit with an error
+if [[ ! -f "$ARTIFACT_FILE" ]]; then
+    >&2 echo "Dotty IDE config not found in project."
+    exit 1
+fi
+
+# Get the name of the IDE jar file, launch the language server
+LSP_ARTIFACT=$(cat "$ARTIFACT_FILE")
+LSP_LAUNCH_CMD="exec coursier launch $LSP_ARTIFACT -M $LSP_CLASS -- -stdio"
+
+eval "$LSP_LAUNCH_CMD"
