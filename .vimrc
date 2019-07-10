@@ -23,6 +23,7 @@ endif
 
 " External Plugins
 call plug#begin(g:vhome . '/plugged/')
+    Plug 'tpope/vim-surround'
 	" Rust
 	Plug 'rust-lang/rust.vim'
 
