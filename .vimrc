@@ -37,6 +37,10 @@ call plug#begin(g:vhome . '/plugged/')
 	Plug 'Shougo/deoplete.nvim'
 	" For Denite features
 	Plug 'Shougo/denite.nvim'
+
+    " LSP
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'derekwyatt/vim-scala'
 call plug#end()
 
 let g:deoplete#enable_at_startup = 1
