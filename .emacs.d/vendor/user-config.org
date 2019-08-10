@@ -1,0 +1,68 @@
+#+TITLE: John's emacs config
+
+* This is the config module
+#+BEGIN_SRC emacs-lisp
+(provide 'user-config)
+#+END_SRC
+
+* Prelude
+** Configure default behavior
+#+BEGIN_SRC emacs-lisp
+;; colors!
+(load-theme 'wombat)
+
+;; turn off stupid bars (in order of greatest annoyance)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+
+;; modeline time
+(setq display-time-default-load-average nil)
+(setq display-time-format "%A %b %d %Y %H:%M")
+(display-time-mode 1)
+
+;; line numbers
+(add-hook 
+  'prog-mode-hook 
+  (lambda ()
+    (display-line-numbers-mode)
+    (setq display-line-numbers 'relative)))
+
+;; self-care
+(setq inhibit-startup-screen t)
+(setq inhibit-startup-echo-area-message "This aint your dad's spacemacs")
+(setq initial-scratch-message ";; 頑張って!\n\n")
+#+END_SRC
+
+* Helpers n stuff
+#+BEGIN_SRC emacs-lisp
+(require 'helpful)
+#+END_SRC
+
+* Packages
+#+BEGIN_SRC emacs-lisp
+;; enable package manager
+(require 'straight-init)
+
+;; mini-modeline
+(use-package mini-modeline
+  :config (mini-modeline-mode 1)
+  :straight (mini-modeline 
+              :type git 
+              :host github 
+              :repo "kiennq/emacs-mini-modeline"))
+
+;; which-key
+(use-package which-key
+  :config (which-key-mode 1))
+
+;; undo-tree
+(use-package undo-tree
+  :config (global-undo-tree-mode 1))
+
+;; evil!
+(use-package evil
+  :after undo-tree
+  :config (evil-mode 1))
+#+END_SRC
+
