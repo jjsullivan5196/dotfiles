@@ -14,6 +14,10 @@
 ;; font size
 (set-face-attribute 'default nil :height 120)
 
+;; flat modeline
+(set-face-attribute 'mode-line nil :box nil)
+(set-face-attribute 'mode-line-inactive nil :box nil)
+
 ;; turn off stupid bars (in order of greatest annoyance)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -23,6 +27,7 @@
 (setq display-time-default-load-average nil)
 (setq display-time-format "%A %b %d %Y %H:%M")
 (display-time-mode 1)
+(display-battery-mode 1)
 
 ;; line numbers
 (add-hook 
@@ -77,5 +82,36 @@
 (use-package evil-surround
   :after evil
   :config (global-evil-surround-mode 1))
+  
+;; w3m
+(use-package emacs-w3m
+  :config (require 'w3m-load)
+  :straight (emacs-w3m 
+              :type git 
+              :host github 
+              :repo "emacs-w3m/emacs-w3m"))
+
+;; ivy
+(use-package ivy
+  :config (ivy-mode 1))
+
+(use-package counsel
+  :config (counsel-mode 1))
+  
+;; projectile
+(use-package projectile)
+
+;; magit
+(use-package magit)  
 #+END_SRC
 
+* EXWM
+#+BEGIN_SRC emacs-lisp
+(use-package exwm
+  :if (eq system-type 'gnu/linux)
+  :config
+  (require 'exwm-config)
+  (require 'exwm-systemtray)
+  (exwm-config-default)
+  (exwm-systemtray-enable))
+#+END_SRC

@@ -1,14 +1,20 @@
-ZDOTDIR="$HOME/.config/zsh"
-QT_QPA_PLATFORM=wayland-egl
+export ZDOTDIR="$HOME/.config/zsh"
+
+# GUI Stuff
+export XORG_WM=bspwm
+export XORG_START="exec startx"
+export START_GUI=$XORG_START
 
 # Defaults
-EDITOR="nvim"
-VISUAL="$EDITOR"
-BROWSER="qutebrowser"
+export TERMINAL="alacritty"
+export EDITOR="nvim"
+export VISUAL="$EDITOR"
+export BROWSER="qutebrowser"
+export DMENU_CMD='/usr/bin/dmenu'
 
 # When stuff needs my githubz
-GHTOKEN=$(cat $HOME/.ghtoken)
+export GHTOKEN=$(cat $HOME/.ghtoken)
 
 # Path finagling
 typeset -U path
-path=($HOME/.gem/ruby/2.5.0/bin $HOME/.local/bin $HOME/.local/share/scala/dotty/bin $HOME/.npm-global/bin $path[@])
+path=($HOME/.gem/ruby/2.6.0/bin $HOME/.local/bin $HOME/.local/share/scala/dotty/bin $HOME/.npm-global/bin $HOME/.config/composer/vendor/bin $path[@])
