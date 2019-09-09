@@ -1,0 +1,20 @@
+# Reload config
+super + shift + r
+ bspc wm -r
+
+# Move desktops/windows
+super + {_, shift} + {1-9}
+  bspc {desktop -f, node -d} {1-9}
+
+# Focus/swap with another window
+super + {_, shift} + {h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# Toggle float/fullscreen
+super + {_, shift} + f
+  bspc node -t {'~fullscreen', '~floating'}
+
+# Close window
+super + d
+  bspc node -c
+

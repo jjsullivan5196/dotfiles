@@ -1,0 +1,19 @@
+# Volume keys
+XF86Audio{LowerVolume,RaiseVolume,Mute}
+  amixer sset Master {5%-,5%+,toggle}
+
+# Run programs
+super + r
+  dmenu_run
+
+# VTE
+super + Return
+  $TERMINAL
+
+# Screen lock
+super + Pause
+  physlock -d
+
+# Exit session
+super + shift + e
+  dmenu_prompt "Are you sure you want to exit xorg?" pkill xinit
