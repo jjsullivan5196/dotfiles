@@ -2,14 +2,11 @@
 
 # Run these programs on (graphical) startup
 
+# emacs daemon
+emacs --daemon &
+
 # compositing
 compton -b &
-
-# notifications
-dunst &
-
-# bar
-polybar default &
 
 # pidgin
 pidgin &
