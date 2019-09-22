@@ -8,7 +8,7 @@ super + r
 
 # VTE
 super + Return
-  $TERMINAL
+  eval $TERMINAL
 
 # Screen lock
 super + Pause

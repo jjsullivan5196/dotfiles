@@ -10,14 +10,11 @@ xsetroot -cursor_name left_ptr
 # Set keyboard repeat rate.
 xset r rate 200 60
 
-# Uncomment the following block to use the exwm-xim module.
-#export XMODIFIERS=@im=exwm-xim
-#export GTK_IM_MODULE=xim
-#export QT_IM_MODULE=xim
-#export CLUTTER_IM_MODULE=xim
+# Load key remappings
+xmodmap ~/.Xmodmap
 
 # Startup programs
 sh ~/.config/autostart.sh &
 
 # Start window manager
-exec "${XORG_WM}"
+[ -f $XORG_PROFILE ] && . $XORG_PROFILE
