@@ -133,6 +133,16 @@
 
 #+END_SRC
 
+** Eshell
+#+BEGIN_SRC emacs-lisp
+  (require 'eshell)
+
+  (defun eshell/clear ()
+    "Actually clear eshell"
+    (interactive)
+    (let ((inhibit-read-only t))
+      (erase-buffer)))
+#+END_SRC
 ** Helping hands
 #+BEGIN_SRC emacs-lisp
   (defun from-userdir (path)
@@ -142,7 +152,7 @@
   (defun edit-user-config ()
     "Edit the main configuration file"
     (interactive)
-    (display-buffer (find-file user-config-source-file)))
+    (find-file-other-frame user-config-source-file))
 
   (defun config-reinit ()
     "Reload init.el"
