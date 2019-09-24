@@ -1,6 +1,9 @@
 # Volume keys
-XF86Audio{LowerVolume,RaiseVolume,Mute}
-  amixer sset Master {5%-,5%+,toggle}
+XF86Audio{LowerVolume,RaiseVolume}
+  pactl set-sink-volume 0 {-5%,+5%}
+
+XF86AudioMute
+  pactl set-sink-mute 0 toggle
 
 # Run programs
 super + r
