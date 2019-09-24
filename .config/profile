@@ -2,6 +2,8 @@
 export XORG_PROFILE="$HOME/.config/xprofile.d/bspwm.sh"
 export START_GUI="exec startx"
 
+export QT_STYLE_OVERRIDE=adwaita
+
 # Defaults
 export TERMINAL="emacsclient -a \"\" -nc -e '(eshell t)'"
 export EDITOR="emacsclient -a \"\" -c"
@@ -12,11 +14,25 @@ export DMENU_CMD='/usr/bin/dmenu'
 # When stuff needs my githubz
 export GHTOKEN=$(cat $HOME/.ghtoken)
 
+LOCAL=$HOME/.local
+SHARE=$LOCAL/share
+
+# JAVA
+export JAVA_HOME=$SHARE/jdk/jdk-11.0.4+11
+
+# Droid
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+
 # Path finagling
-EXTPATH=($HOME/.gem/ruby/2.6.0/bin \
-         $HOME/.local/bin \
-         $HOME/.local/share/scala/dotty/bin \
+EXTPATH=($JAVA_HOME/bin \
+         $ANDROID_SDK_ROOT/tools \
+         $ANDROID_SDK_ROOT/platform-tools \
+         $SHARE/android-studio/bin \
+         $SHARE/scala/dotty/bin \
+         $SHARE/Discord \
+         $LOCAL/bin \
          $HOME/.npm-global/bin \
+         $HOME/.gem/ruby/2.6.0/bin \
          $HOME/.config/composer/vendor/bin)
 
 export PATH=$(printf "%s:" ${EXTPATH[@]} $PATH)

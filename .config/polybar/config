@@ -9,7 +9,6 @@ alert = #bd2c40
 
 [bar/default]
 bottom = true
-;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
 fixed-center = false
@@ -29,9 +28,9 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
-font-1 = dejavu:fontformat=truetype:size=8:antialias=false;0
-font-2 = dejavu:pixelsize=10;1
+font-0 = sans:pixelsize=10;1
+font-1 = sans:fontformat=truetype:size=8:antialias=false;0
+font-2 = monospace:pixelsize=10;1
 
 modules-left = bspwm 
 modules-right = pulseaudio memory cpu battery date 

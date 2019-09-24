@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Run these programs on (graphical) startup
 
 # emacs daemon

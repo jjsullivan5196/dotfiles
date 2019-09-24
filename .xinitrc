@@ -7,6 +7,9 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Set default cursor.
 xsetroot -cursor_name left_ptr
 
+# Xresources
+xrdb ~/.Xresources
+
 # Set keyboard repeat rate.
 xset r rate 200 60
 
@@ -14,7 +17,7 @@ xset r rate 200 60
 xmodmap ~/.Xmodmap
 
 # Startup programs
-sh ~/.config/autostart.sh &
+. ~/.config/autostart.sh
 
 # Start window manager
 [ -f $XORG_PROFILE ] && . $XORG_PROFILE

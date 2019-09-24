@@ -148,16 +148,6 @@
     "Reload init.el"
     (interactive)
     (load (from-userdir "init.el")))
-
-  (defun dgit ()
-    "Run magit in dotfiles repo"
-    (interactive)
-    (with-temp-buffer
-      (let ((magit-git-environment (copy-sequence magit-git-environment))
-            (home (getenv "$HOME")))
-        (setenv-internal magit-git-environment "GIT_DIR" (concat home "/.dotcfg") t)
-        (setenv-internal magit-git-environment "GIT_WORK_TREE" home t)
-        (magit))))
 #+END_SRC
 
 * Programming
