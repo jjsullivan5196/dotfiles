@@ -3,9 +3,6 @@
 # emacs daemon
 emacs --daemon &
 
-# compositing
-compton -b &
-
 # pidgin
 pidgin &
 
