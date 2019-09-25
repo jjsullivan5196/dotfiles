@@ -1,10 +1,6 @@
 #!/bin/sh
 
-sxhkd ~/.config/sxhkd/bspwm &
-
-polybar default &
-
-hsetroot -full ~/.wallpaper
+pkill -SIGUSR1 sxhkd
 
 bspc monitor -d 1 2 3 4 5 6 7 8 9
 

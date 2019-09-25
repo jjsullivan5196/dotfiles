@@ -1,19 +1,3 @@
-# GUI Stuff
-export XORG_PROFILE="$HOME/.config/xprofile.d/bspwm.sh"
-export START_GUI="exec startx"
-
-export QT_STYLE_OVERRIDE=adwaita
-
-# Defaults
-export TERMINAL="emacsclient -a \"\" -nc -e '(eshell t)'"
-export EDITOR="emacsclient -a \"\" -c"
-export VISUAL="emacsclient -a \"\" -nc"
-export BROWSER="qutebrowser"
-export DMENU_CMD='/usr/bin/dmenu'
-
-# When stuff needs my githubz
-export GHTOKEN=$(cat $HOME/.ghtoken)
-
 LOCAL=$HOME/.local
 SHARE=$LOCAL/share
 

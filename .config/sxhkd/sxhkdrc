@@ -13,6 +13,10 @@ super + r
 super + Return
   eval $TERMINAL
 
+# Editor
+super + shift + Return
+  eval $QTERM
+
 # Screen lock
 super + Pause
   physlock -d
