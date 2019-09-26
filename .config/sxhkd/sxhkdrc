@@ -10,11 +10,11 @@ super + r
   dmenu_run
 
 # VTE
-super + Return
+super + shift + Return
   eval $TERMINAL
 
 # Editor
-super + shift + Return
+super + Return
   eval $QTERM
 
 # Screenshot
