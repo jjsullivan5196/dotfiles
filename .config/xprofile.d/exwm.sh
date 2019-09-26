@@ -6,4 +6,4 @@
 
 sxhkd &
 
-exec emacsclient -a "" -c
+exec dbus-launch --exit-with-session emacsclient -a "" -c

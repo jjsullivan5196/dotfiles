@@ -4,4 +4,4 @@ sxhkd ~/.config/sxhkd/bspwm &
 
 hsetroot -full ~/.wallpaper &
 
-exec bspwm
+exec dbus-launch --exit-with-session bspwm
