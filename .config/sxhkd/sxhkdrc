@@ -17,6 +17,13 @@ super + Return
 super + shift + Return
   eval $QTERM
 
+# Screenshot
+super + @Print
+  scrot -s -d 1 "$HOME/pics/screen/%Y-%m-%d-%H:%M:%S_$wx$h.png"
+
+Print
+  scrot "$HOME/pics/screen/%Y-%m-%d-%H:%M:%S_$wx$h.png"
+
 # Screen lock
 super + Pause
   physlock -d

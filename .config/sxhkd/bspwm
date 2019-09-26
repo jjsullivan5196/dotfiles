@@ -8,7 +8,7 @@ super + {_, shift} + {1-9}
 
 # Focus/swap with another window
 super + {_, shift} + {h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+  bspc node -{f,s} {west,south,north,east}
 
 # Toggle float/fullscreen
 super + {_, shift} + f

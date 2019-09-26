@@ -158,13 +158,21 @@
     "Reload init.el"
     (interactive)
     (load (from-userdir "init.el")))
+
+  (defmacro make-alias (var &rest syms)
+    "Alias all of SYMS to VAR"
+    (append '(progn)
+            (mapcar (lambda (s) (list 'defvaralias s var)) syms)))
 #+END_SRC
 
 * Programming
 ** General
 #+BEGIN_SRC emacs-lisp
-  (setq-default indent-tabs-mode nil)
-  (setq tab-width 2)
+  (setq-default indent-tabs-mode nil
+                tab-width 2)
+
+  (make-alias 'tab-width 'standard-indent 
+                         'sh-basic-offset)
 
   (use-package rainbow-delimiters
     :hook ((prog-mode . rainbow-delimiters-mode)))
