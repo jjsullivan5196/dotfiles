@@ -13,7 +13,6 @@ EXTPATH=($JAVA_HOME/bin \
          $ANDROID_SDK_ROOT/platform-tools \
          $SHARE/android-studio/bin \
          $SHARE/scala/dotty/bin \
-         $SHARE/Discord \
          $LOCAL/bin \
          $HOME/.npm-global/bin \
          $HOME/.gem/ruby/2.6.0/bin \
