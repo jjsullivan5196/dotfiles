@@ -1,4 +1,6 @@
 #!/bin/sh
 
+alias cfg='git --git-dir=$HOME/.dotcfg --work-tree=$HOME'
 git clone --bare https://github.com/jjsullivan5196/dotfiles $HOME/.dotcfg
-git --git-dir=$HOME/.dotcfg --work-tree=$HOME checkout
+cfg checkout
+cfg config --local status.showUntrackedFiles no
