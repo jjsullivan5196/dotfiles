@@ -1,0 +1,4 @@
+#!/bin/sh
+
+git clone --bare https://github.com/jjsullivan5196/dotfiles $HOME/.dotcfg
+git --git-dir=$HOME/.dotcfg --work-tree=$HOME checkout
