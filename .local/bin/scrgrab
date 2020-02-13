@@ -1,0 +1,6 @@
+#/bin/sh
+
+PIC="$HOME/pics/screen/$(date +%Y-%m-%d-%H:%M:%S).png"
+
+scrot -s -d 1 $PIC
+echo $PIC | xclip -sel clipboard

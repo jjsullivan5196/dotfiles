@@ -19,7 +19,7 @@ super + Return
 
 # Screenshot
 super + @Print
-  scrot -s -d 1 "$HOME/pics/screen/%Y-%m-%d-%H:%M:%S_$wx$h.png"
+  scrgrab
 
 Print
   scrot "$HOME/pics/screen/%Y-%m-%d-%H:%M:%S_$wx$h.png"
