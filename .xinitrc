@@ -10,9 +10,6 @@ xsetroot -cursor_name left_ptr
 # Set keyboard repeat rate.
 xset r rate 200 60
 
-# Load key remappings
-xmodmap ~/.Xmodmap
-
 # Xresources
 xrdb ~/.Xresources
 
