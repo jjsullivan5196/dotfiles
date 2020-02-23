@@ -1,6 +1,19 @@
 #!/bin/sh
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9
+OUTPUTS=($(xrandr | grep '\sconnected' | cut -d ' ' -f 1))
+NUM_OUTPUTS=${#OUTPUTS[@]}
+
+NUM_DESKTOPS=9
+PER_DESKTOP=$(((NUM_DESKTOPS / NUM_OUTPUTS) - 1))
+DESK=1
+
+pkill polybar
+
+for output in $OUTPUTS; do
+  bspc monitor $output -d $(seq $DESK $((DESK + PER_DESKTOP)))
+  DESK=$((DESK + PER_DESKTOP))
+  MONITOR=$output polybar --reload default &
+done
 
 bspc config border_width        2
 bspc config window_gap          0

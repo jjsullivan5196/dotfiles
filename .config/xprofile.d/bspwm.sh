@@ -1,7 +1,5 @@
 sxhkd ~/.config/sxhkd/bspwm &
 
-hsetroot -full ~/.wallpaper &
-
-polybar default &
+hsetroot -fill ~/.wallpaper &
 
 exec bspwm
