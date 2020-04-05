@@ -3,11 +3,11 @@ super + shift + r
  bspc wm -r
 
 # Move desktops/windows
-super + {_, shift} + {h,semicolon,1-9}
+super + {_, shift} + {o,p,1-9}
   bspc {desktop -f, node -d} {prev,next,1-9}
 
 # Focus/swap with another window
-super + {_, shift} + {j,k,i,l}
+super + {_, shift} + {h,j,k,l}
   bspc node -{f,s} {west,south,north,east}
 
 # Toggle float/fullscreen
@@ -17,4 +17,3 @@ super + {_, shift} + f
 # Close window
 super + d
   bspc node -c
-

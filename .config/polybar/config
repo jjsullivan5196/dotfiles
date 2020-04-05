@@ -11,8 +11,9 @@ alert = #bd2c40
 monitor = ${env:MONITOR:}
 bottom = true
 width = 100%
-height = 30
+height = 25
 fixed-center = false
+wm-restack = bspwm
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -33,8 +34,8 @@ font-0 = sans:pixelsize=10;1
 font-1 = sans:fontformat=truetype:size=8:antialias=false;0
 font-2 = monospace:pixelsize=10;1
 
-modules-left = bspwm 
-modules-right = pulseaudio memory cpu battery date 
+modules-left = bspwm
+modules-right = pulseaudio memory cpu battery date
 
 tray-position = right
 tray-padding = 0
