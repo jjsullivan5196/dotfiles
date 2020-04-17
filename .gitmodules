@@ -1,3 +1,6 @@
 [submodule ".emacs.d"]
 	path = .emacs.d
 	url = git@github.com:jjsullivan5196/dotemacs.git
+[submodule ".local/share/nix-direnv"]
+	path = .local/share/nix-direnv
+	url = https://github.com/nix-community/nix-direnv.git
