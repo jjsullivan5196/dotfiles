@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 OUTPUTS=($(xrandr | grep '\sconnected' | cut -d ' ' -f 1))
 NUM_OUTPUTS=${#OUTPUTS[@]}
