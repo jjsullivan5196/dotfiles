@@ -3,8 +3,5 @@
 # emacs daemon
 emacs --daemon &
 
-# disco
-Discord &
-
-# steam
-steam -silent &
+# pidgin
+pidgin &

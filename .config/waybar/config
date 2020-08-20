@@ -1,0 +1,17 @@
+{
+  "position": "bottom",
+  "layer": "top",
+  "height": 25,
+  "modules-left": ["sway/workspaces","sway/window","sway/mode"],
+  "modules-right": ["battery","pulseaudio","tray","clock"],
+  "sway/window": {
+    "max-length": 50
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}"
+  }
+}
