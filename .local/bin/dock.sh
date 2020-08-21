@@ -15,7 +15,6 @@ if [ "${HDMI_CONNECTED}" = "connected" ]; then
   # Change default audio sink
   pacmd 'set-default-sink 1'
 else
-  echo
   # Change display
   swaymsg output HDMI-A-1 disable
   swaymsg output DSI-1 enable
