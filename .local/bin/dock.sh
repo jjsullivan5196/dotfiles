@@ -3,6 +3,9 @@
 export SWAYSOCK=${XDG_RUNTIME_DIR}/sway-*.sock
 HDMI_CONNECTED=`cat /sys/class/drm/card0-HDMI-A-1/status`
 
+# Make sure sway is running
+[ -e ${SWAYSOCK} ] || exit 0
+
 # Check if HDMI is connected
 if [ "${HDMI_CONNECTED}" = "connected" ]; then
   # Change display
