@@ -13,5 +13,9 @@
   },
   "clock": {
     "format-alt": "{:%a, %d. %b  %H:%M}"
+  },
+  "pulseaudio": {
+    "on-click": "pactl set-sink-mute '@DEFAULT_SINK@' toggle",
+    "on-click-right": "pavucontrol"
   }
 }
