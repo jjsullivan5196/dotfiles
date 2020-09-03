@@ -3,5 +3,8 @@
 # emacs daemon
 emacs --daemon &
 
-# pidgin
-pidgin &
+# matrix
+nheko &
+
+# irc
+hexchat &
