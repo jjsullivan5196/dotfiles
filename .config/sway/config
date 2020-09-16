@@ -20,6 +20,9 @@ client.unfocused $second_color $base_color $white
 # Default wallpaper
 output * bg $HOME/.wallpaper fill
 
+exec swayidle -w \
+         timeout 400 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+
 input "type:keyboard" {
   repeat_delay 200
   repeat_rate 60
