@@ -4,7 +4,7 @@
 emacs --daemon &
 
 # matrix
-nheko &
+element-desktop &
 
 # irc
 hexchat &
