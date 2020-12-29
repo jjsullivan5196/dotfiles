@@ -7,4 +7,4 @@ emacs --daemon &
 element-desktop &
 
 # irc
-hexchat &
+#hexchat &
