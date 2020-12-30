@@ -1,0 +1,30 @@
+#!/bin/bash
+
+run_actions() {
+  case "$NAME" in
+    wireless|ethernet)
+      networkmanager_dmenu &
+      ;;
+    volume)
+      case "$BUTTON" in
+        1) pactl set-sink-mute '@DEFAULT_SINK@' toggle & ;;
+        3) pavucontrol & ;;
+        4) pactl set-sink-volume '@DEFAULT_SINK@' +1% & ;;
+        5) pactl set-sink-volume '@DEFAULT_SINK@' -1% & ;;
+      esac
+      ;;
+  esac
+}
+
+JQ_READ='to_entries |
+  map(@text "\(.key | ascii_upcase)=\(.value)") |
+  join(" ")'
+
+read_clicks() {
+  jq --unbuffered -r "${JQ_READ}" | while read KEYS; do
+    export $KEYS
+    run_actions
+  done
+}
+
+read_clicks

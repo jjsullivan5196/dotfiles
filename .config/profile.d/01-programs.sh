@@ -1,6 +1,6 @@
 export EDITOR="emacsclient -a \"\" -c"
 export VISUAL="$EDITOR -n"
-export TERMINAL="$VISUAL -e '(eshell t)'"
+export TERMINAL="foot"
 export QTERM="$VISUAL -e '(eshell)'"
 export BROWSER="firefox"
 export GRIM_DEFAULT_DIR="$HOME/pics/screen/"

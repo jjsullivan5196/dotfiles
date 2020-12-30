@@ -1,0 +1,16 @@
+#!/bin/sh
+
+HEADER='{"version":1,"click_events":true}'
+CMDLINE="$@"
+
+# Accept clicks
+echo "${HEADER}"
+
+# Get statusline
+i3status | sed -u '1d' &
+
+# Get out
+trap "pkill i3status; exit" STOP KILL TERM ABORT
+
+# Process click events
+sed -u -e '1d' -e 's/^,//' | ${CMDLINE} > /dev/null

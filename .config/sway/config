@@ -143,7 +143,20 @@ bindsym $mod+m mode "resize"
 for_window [class="rxvt*"] opacity 0.9
 
 bar {
-  swaybar_command waybar
+    position bottom
+    font monospace 14
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command statbar i3action
+
+    colors {
+        statusline $white
+        background #323232
+        inactive_workspace #323232 #323232 #5c5c5c
+        focused_workspace $second_color $base_color $white
+    }
 }
 
 include $HOME/.config/sway/config.d/*
+include $HOME/.config/sway/`hostname`.conf
