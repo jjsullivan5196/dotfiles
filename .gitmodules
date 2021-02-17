@@ -7,3 +7,6 @@
 [submodule ".local/share/st"]
 	path = .local/share/st
 	url = git@github.com:jjsullivan5196/st-patches.git
+[submodule ".local/share/i3blocks-contrib"]
+	path = .local/share/i3blocks-contrib
+	url = https://github.com/vivien/i3blocks-contrib.git
