@@ -1,21 +1,8 @@
-# i3blocks configuration file
-#
-# The i3blocks man page describes the usage of the binary,
-# and its website describes the configuration:
-#
-#     https://vivien.github.io/i3blocks
-
-
-# Global properties
 separator=true
 separator_block_width=15
 
 [iface]
 command=$HOME/.local/share/i3blocks-contrib/iface/iface
-#LABEL=wlan0:
-#IFACE=wlan0
-#ADDRESS_FAMILY=inet6?
-color=#00FF00
 interval=10
 
 [battery]
