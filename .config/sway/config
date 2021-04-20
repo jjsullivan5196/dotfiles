@@ -19,6 +19,7 @@ client.unfocused $second_color $base_color $white
 
 # Default wallpaper
 output * bg $HOME/.wallpaper fill
+output HDMI-A-2 scale 1
 
 exec swayidle -w \
          timeout 400 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
