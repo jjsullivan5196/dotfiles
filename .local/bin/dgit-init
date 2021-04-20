@@ -1,9 +1,0 @@
-#!/bin/sh
-
-MAIN=${1}
-alias cfg='git --git-dir=$MAIN/.dotcfg --work-tree=$HOME'
-
-git clone --recursive --bare git@github.com:jjsullivan5196/dotfiles.git $MAIN/.dotcfg
-cfg checkout
-cfg submodule update --init
-cfg config --local status.showUntrackedFiles no
