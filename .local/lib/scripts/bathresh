@@ -1,0 +1,9 @@
+#!/bin/sh
+
+THRESH=$1
+BAT="/sys/class/power_supply/${2:-BAT0}"
+STOP="${BAT}/charge_stop_threshold"
+START="${BAT}/charge_start_threshold"
+
+echo 0 | tee $START > /dev/null
+echo $THRESH | tee $STOP $START > /dev/null

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+DMENU_BIN="$XDG_DATA_HOME/dmenu/dmenu"
+
+$DMENU_BIN \
+  -nb $P_COLOR_BG \
+  -nf $P_COLOR_FG \
+  -sb $P_COLOR_BG_SEL \
+  -sf $P_COLOR_FG_SEL \
+  -i -c -l 10 "$@"

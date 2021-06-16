@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+import sys
+import xml.etree.ElementTree as ET
+
+tree = ET.parse(sys.stdin)
+channel = tree.find('channel')
+
+title = channel.find('title').text
+link = channel.find('link').text
+description = channel.find('description').text
+items = channel.findall('item')
+
+print(f'=> {link} {title}\n')
+
+for item in items:
+  item_title = item.find('title').text
+  item_date = item.find('pubDate').text
+  item_link = item.find('link').text
+  item_description = item.find('description').text
+
+  print(f'=> {item_link} {item_title}\n{item_date} - {item_description}\n ')

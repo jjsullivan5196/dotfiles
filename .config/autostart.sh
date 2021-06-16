@@ -1,10 +1,10 @@
 # Run these programs on (graphical) startup
 
 # emacs daemon
-emacs --daemon &
+#emacs --daemon &
 
 # matrix
-element-desktop &
+#element-desktop &
 
 # irc
-hexchat &
+#hexchat &

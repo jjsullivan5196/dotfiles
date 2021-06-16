@@ -1,2 +1,0 @@
-#!/bin/sh
-SVDIR=$HOME/.local/service sv "$@"

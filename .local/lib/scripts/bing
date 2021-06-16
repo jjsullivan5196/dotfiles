@@ -1,0 +1,9 @@
+#!/bin/sh
+
+BING="https://www.bing.com/search"
+QUERY="$@"
+
+curl -G \
+   --data-urlencode "q=${QUERY}" \
+   --data-urlencode "format=rss" \
+   "${BING}"

@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+PASSWORD_STORE_DIR=${PASSWORD_STORE_DIR:-"$HOME/.password-store"}
+
+pass_option() {
+  echo -ne "user\npassword\notp\new" | dmenu $@ -p "Use"
+}
+
+pass_names() {
+  files "$PASSWORD_STORE_DIR" | \
+    dmenu $@ -p "Choose password"
+}
+
+pass_key() {
+  NAME="$1"
+  KEY="$2"
+  pass "$NAME" | tail +2 | grep "${KEY}:" | cut -d' ' -f 2
+}
+
+use_pass() {
+  PASS_OPTION=$1; shift
+  PASS_NAME=$(pass_names $@)
+
+  [ -n "$PASS_NAME" ] && {
+    case $PASS_OPTION in
+      otp)      pass otp -c "$PASS_NAME";;
+      user)     pass_key "$PASS_NAME" "login" | wl-copy;;
+      password) pass -c "$PASS_NAME";;
+      *) ;;
+    esac
+  }
+}
+
+PASS_OPTION=$(pass_option $@)
+
+if [ "$PASS_OPTION" = "new" ]; then
+  NEW_PASS=$(echo -ne "" | dmenu $@ -p "New password")
+  passnew "$NEW_PASS"
+else
+  use_pass $PASS_OPTION $@
+fi

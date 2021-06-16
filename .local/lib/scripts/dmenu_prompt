@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+PROMPT=$1
+shift
+
+COMMAND=$@
+CONFIRM=$(echo -ne "yes\nno" | dmenu -p "$PROMPT")
+
+case $CONFIRM in
+  yes) eval "$COMMAND";;
+  *) ;;
+esac

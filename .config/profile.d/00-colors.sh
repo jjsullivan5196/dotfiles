@@ -1,0 +1,5 @@
+export P_COLOR_BG="#323232"
+export P_COLOR_FG="#dddddd"
+export P_COLOR_BG_SEL="#cc0033"
+export P_COLOR_FG_SEL="#ffffff"
+export P_COLOR_BG_NTR="#880033"

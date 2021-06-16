@@ -1,6 +1,5 @@
 export XCURSOR_THEME=adwaita
 export QT_STYLE_OVERRIDE=adwaita
+#export MOZ_ENABLE_WAYLAND=1
 
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
- exec dbus-run-session sway
-fi
+[[ ! $DISPLAY && $XDG_VTNR -eq 1 ]] && exec xinit -- :1

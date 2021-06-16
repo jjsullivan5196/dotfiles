@@ -7,17 +7,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Set default cursor.
 xsetroot -cursor_name left_ptr
 
-# Set keyboard repeat rate.
-xset r rate 200 60
-
-# Xresources
-xrdb ~/.Xresources
-
 # Compositing
-compton -b &
+picom &
 
-# Startup programs
-[ -f ~/.config/autostart.sh ] && . ~/.config/autostart.sh
+# Wallpaper
+wallpaper
 
 # Start window manager
-[ -f $XORG_PROFILE ] && . $XORG_PROFILE
+export EXWM_ENABLE=true
+exec dbus-run-session emacs

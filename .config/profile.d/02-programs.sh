@@ -1,4 +1,5 @@
-export EDITOR='emacsclient -a "" -c'
+export ALTERNATE_EDITOR=""
+export EDITOR='emacsclient -c'
 export VISUAL="$EDITOR -n"
 export TERMINAL="foot"
 export BROWSER="firefox"
