@@ -1,9 +1,0 @@
-#!/usr/bin/env sh
-
-PIC="$HOME/pics/screen/$(date +%Y-%m-%d-%H:%M:%S).png"
-
-case $1 in
-  win)    grim -g "$(winregion)" -;;
-  region) grim -g "$(slurp)" -;;
-  *)      grim -;;
-esac | tee "$PIC" | wl-copy

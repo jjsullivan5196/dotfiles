@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+XINIT_SCRIPT=${XDG_CONFIG_HOME}/X11/xinitrc
+
+exec dbus-run-session $XINIT_SCRIPT $@

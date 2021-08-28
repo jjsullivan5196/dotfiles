@@ -1,7 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 PWR='/sys/class/power_supply'
-FMT=${FMT:-'${BAT}: ${STATUS} ${CHARGE}%'}
 SEP=${SEP:-', '}
 BATS=$@
 LINE=''
@@ -9,13 +8,10 @@ LINE=''
 for BAT in $BATS; do
   SYSFS="${PWR}/${BAT}"
   if [ -d "$SYSFS" ]; then
-    export BAT
-    export CHARGE=$(cat "${SYSFS}/capacity")
-
+    CHARGE=$(cat "${SYSFS}/capacity")
     STATUS=$(cat "${SYSFS}/status" | tr '[:lower:]' '[:upper:]')
-    export STATUS="${STATUS:0:3}"
-
-    LINE=${LINE}${LINE:+$SEP}$(echo "$FMT" | envsubst '${BAT}${STATUS}${CHARGE}')
+    STATUS="${STATUS:0:3}"
+    LINE="${LINE}${LINE:+$SEP}${BAT}: ${STATUS} ${CHARGE}%"
   fi
 done
 

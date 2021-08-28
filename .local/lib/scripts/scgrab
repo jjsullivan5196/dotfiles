@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+PICS_DIR=$(xdg-user-dir "PICTURES")
+SCR_DIR=${PICS_DIR:-$HOME}/screen
+FNAME=${SCR_DIR}/$(date +"%d_%m_%Y_%H_%M_%S.png")
+
+[ -d "$SCR_DIR" ] || mkdir -p "$SCR_DIR"
+
+maim -s | tee "$FNAME" | xclip -sel clipboard -t "image/png"

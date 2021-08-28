@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# Wallpaper
+wallpaper
+
+# Polkit
+lxqt-policykit-agent &
+
+# Start window manager
+export EXWM_ENABLE=true
+exec emacs
