@@ -8,4 +8,6 @@ lxqt-policykit-agent &
 
 # Start window manager
 export EXWM_ENABLE=true
-exec emacs
+#exec emacs
+exec fluxbox
+#exec flatpak run com.valvesoftware.Steam

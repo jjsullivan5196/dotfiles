@@ -21,6 +21,9 @@ xsettingsd &
 # Compositing
 picom &
 
+# Audio
+pipewire &
+
 # Start window manager
 STARTX=${USERXSESSION:-$HOME/.xsession}
 eval "$STARTX"

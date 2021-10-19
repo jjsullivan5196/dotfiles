@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+SOURCE=${1}
+DEST=${2}
+
+for fname in $(ls ${SOURCE}); do
+	dd if="${SOURCE}/${fname}" of="${DEST}/${fname}" status=none
+done

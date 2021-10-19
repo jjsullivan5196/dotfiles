@@ -1,5 +1,8 @@
 # Run these programs on (graphical) startup
 
+# Audio
+pipewire &
+
 # emacs daemon
 #emacs --daemon &
 

@@ -17,6 +17,10 @@ input "type:keyboard" {
   repeat_rate 60
 }
 
+input * {
+  dwt disabled
+}
+
 bar {
     position bottom
     font monospace 14
