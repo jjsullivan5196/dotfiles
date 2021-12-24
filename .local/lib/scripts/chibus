@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+dconf read /desktop/ibus/general/engines-order | \
+  tr "'" '"' | \
+  jq -r '.[]' - | \
+  dmenu -p "Choose Input Method" | \
+  xargs ibus engine

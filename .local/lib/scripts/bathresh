@@ -1,13 +1,11 @@
 #!/usr/bin/env sh
 
-THRESH_ATTR="charge_control_end_threshold"
-
 BAT=$1
 THRESH=$2
+THRESH_ATTR="charge_control_end_threshold"
+
+echo "$THRESH" > /sys/class/power_supply/${BAT}/${THRESH_ATTR}
 
 tee /etc/udev/rules.d/99-${BAT}-threshold.rules > /dev/null <<EOF
 ACTION=="add" KERNEL=="${BAT}" SUBSYSTEM=="power_supply" ATTR{${THRESH_ATTR}}="${THRESH}"
 EOF
-
-udevadm control --reload
-udevadm trigger --action=add --subsystem-match=power_supply --sysname-match=${BAT}
