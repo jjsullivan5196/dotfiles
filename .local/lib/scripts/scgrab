@@ -6,4 +6,4 @@ FNAME=${SCR_DIR}/$(date +"%d_%m_%Y_%H_%M_%S.png")
 
 [ -d "$SCR_DIR" ] || mkdir -p "$SCR_DIR"
 
-grim -g "$(slurp)" $FNAME
+grim -g "$(slurp)" - | tee $FNAME | wl-copy
