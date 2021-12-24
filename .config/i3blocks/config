@@ -9,13 +9,13 @@ interval=10
 command=battery BAT0
 interval=30
 
-[volume-pulseaudio]
-command=$XDG_DATA_HOME/i3blocks-contrib/volume-pulseaudio/volume-pulseaudio
-interval=once
-signal=1
-AUDIO_HIGH_SYMBOL=🔊
-AUDIO_MED_SYMBOL=🔊
-AUDIO_LOW_SYMBOL=🔇
+[volume]
+command=clickblock wpvol mon
+interval=persist
+LEFT_CLICK=wpvol toggle
+RIGHT_CLICK=pavucontrol
+SCROLL_UP=wpvol adj=5
+SCROLL_DOWN=wpvol adj=-5
 
 [time]
 command=date '+%a %d %b %H:%M'

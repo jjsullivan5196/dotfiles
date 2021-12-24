@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+
+click_action() {
+  [ -z "$@" ] || ($@ &)
+}
+
+on_click() {
+  case $button in
+    1) click_action "$LEFT_CLICK";;
+    2) click_action "$MIDDLE_CLICK";;
+    3) click_action "$RIGHT_CLICK";;
+    4) click_action "$SCROLL_UP";;
+    5) click_action "$SCROLL_DOWN";;
+  esac
+}
+
+# Run the script for the text of the block
+$@ &
+
+# Read button clicks and run the appropriate action
+if [ "$interval" == "persist" ]; then
+  while read button; do
+    on_click &
+  done > /dev/null
+else
+  on_click
+fi
+
+# Kill anything that moves
+pkill -P $$

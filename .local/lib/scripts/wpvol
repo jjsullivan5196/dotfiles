@@ -1,0 +1,81 @@
+#!/usr/bin/env wpexec
+
+local argv = ...
+
+function adjust(v, i)
+  return { volume = v.volume + (i / 100) }
+end
+
+function toggle_mute(v)
+  return { mute = not v.mute }
+end
+
+function format_level(v)
+  return string.format(
+    "%.0f%s",
+    v.volume * 100,
+    v.mute and " M" or ""
+  )
+end
+
+-- Load the necessary wireplumber api modules
+Core.require_api(
+  "mixer",
+  "default-nodes",
+  function(mixer, default_nodes)
+    local node_id
+
+    function default_sink()
+      return default_nodes:call("get-default-node", "Audio/Sink")
+    end
+
+    function get_volume()
+      return mixer:call("get-volume", node_id)
+    end
+
+    function set_volume(f, arg)
+      local v = f(get_volume(), table.unpack(arg))
+      mixer:call("set-volume", node_id, v)
+    end
+
+    function print_level()
+      local v = get_volume()
+      print(format_level(v))
+    end
+
+    mixer.scale = "cubic"
+
+    if argv.node then
+      node_id = argv.node
+    else
+      node_id = default_sink()
+      default_nodes:connect(
+        "changed",
+        function (_)
+          node_id = default_sink()
+        end
+      )
+    end
+
+    if argv.toggle then
+      set_volume(toggle_mute, {})
+      Core.quit()
+    elseif argv.adj then
+      set_volume(adjust, {argv.adj})
+      Core.quit()
+    elseif argv.mon then
+      mixer:connect(
+        "changed",
+        function (p, id)
+          if node_id == id then
+            print_level()
+          end
+        end
+      )
+      print_level()
+    else
+      print_level()
+      Core.quit()
+    end
+  end
+)
