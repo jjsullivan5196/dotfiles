@@ -7,7 +7,7 @@ ibus-daemon -drxR
 pipewire &
 
 # emacs daemon
-#emacs --daemon &
+emacs --daemon &
 
 # matrix
 #element-desktop &
