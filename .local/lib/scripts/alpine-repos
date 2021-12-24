@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+MIRROR="${1}"
+
+cat <<EOF
+${MIRROR}/edge/main
+${MIRROR}/edge/community
+${MIRROR}/edge/testing
+
+/home/john/packages/community
+EOF

@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+MENUDIR="${1:-$XDG_DATA_HOME/menus}"
+MENUNAME="$(basename "$MENUDIR")"
+SELECTION="${MENUDIR}/$(ls "$MENUDIR" | dmenu -p "$MENUNAME")"
+
+[ "$SELECTION" == "$MENUDIR/" ] && exit
+[ -d "$SELECTION" ] && exec dirmenu "$SELECTION"
+[ -x "$SELECTION" ] && exec "$SELECTION"
+[ -f "$SELECTION" ] && exec xdg-open "$SELECTION"
