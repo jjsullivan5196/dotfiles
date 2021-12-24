@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-pass generate "$1"
-pass edit "$1"
-pass "$1" -c
