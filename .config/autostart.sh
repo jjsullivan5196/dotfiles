@@ -1,5 +1,8 @@
 # Run these programs on (graphical) startup
 
+# ibus
+ibus-daemon -drxR
+
 # Audio
 pipewire &
 
@@ -10,4 +13,4 @@ pipewire &
 #element-desktop &
 
 # irc
-#hexchat &
+hexchat &
