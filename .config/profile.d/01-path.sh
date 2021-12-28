@@ -1,13 +1,10 @@
 source $HOME/.local/lib/scripts/util.sh
 
-export GUILE_LOAD_PATH="$XDG_CONFIG_HOME/guix/local:$GUILE_LOAD_PATH"
-#export GUIX_PACKAGE_PATH="$XDG_CONFIG_HOME/guix/local:$GUIX_PACKAGE_PATH"
-#export JAVA_HOME="/usr/lib/jvm/default-jvm"
-#export GRAALVM_HOME="$XDG_DATA_HOME/graalvm-ce-java11-20.2.0"
+export GUILE_LOAD_PATH="$HOME/.local/lib/guile:$GUILE_LOAD_PATH"
 export CLOJURE_HOME="$XDG_DATA_HOME/clojure"
 export DOTNET_ROOT="$HOME/.dotnet"
 
-PATH=$(
+export PATH=$(
   join_by ':' \
           "$HOME/.local/lib/scripts" \
           "$HOME/.local/bin" \

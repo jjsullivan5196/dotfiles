@@ -1,8 +1,12 @@
 #!/usr/bin/env sh
 
 {
-  pkill pipewire 
-  pkill wireplumber 
+  pkill wireplumber
+  pkill pipewire-pulse
+  pkill pipewire
   sleep 1
   pipewire &
+  sleep 1
+  pipewire-pulse &
+  wireplumber &
 } >/dev/null 2>&1 &

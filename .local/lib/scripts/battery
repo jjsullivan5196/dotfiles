@@ -10,7 +10,7 @@ for BAT in $BATS; do
   if [ -d "$SYSFS" ]; then
     CHARGE=$(cat "${SYSFS}/capacity")
     STATUS=$(cat "${SYSFS}/status" | tr '[:lower:]' '[:upper:]')
-    STATUS="${STATUS:0:3}"
+    #STATUS="${STATUS:0:3}"
     LINE="${LINE}${LINE:+$SEP}${BAT}: ${STATUS} ${CHARGE}%"
   fi
 done

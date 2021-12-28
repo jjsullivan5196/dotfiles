@@ -1,5 +1,4 @@
 # Dump search paths
-unset PATH
 unset GUILE_LOAD_PATH
 unset GUIX_PACKAGE_PATH
 unset INFOPATH
