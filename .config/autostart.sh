@@ -1,10 +1,10 @@
 # Run these programs on (graphical) startup
 
 # ibus
-ibus-daemon -drxR
+#ibus-daemon -drxR
 
 # Audio
-pipewire &
+pw-restart
 
 # emacs daemon
 emacs --daemon &
