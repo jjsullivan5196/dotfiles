@@ -4,7 +4,7 @@ PROMPT=$1
 shift
 
 COMMAND=$@
-CONFIRM=$(echo -n "yes\nno" | dmenu -p "$PROMPT")
+CONFIRM=$(echo -ne "yes\nno" | dmenu -p "$PROMPT")
 
 case $CONFIRM in
   yes) eval "$COMMAND";;
