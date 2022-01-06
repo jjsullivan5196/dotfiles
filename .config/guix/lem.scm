@@ -1,16 +1,30 @@
 (use-modules (gnu)
              (gnu services)
              (gnu system nss)
+             (guix gexp)
+	     (gnu packages linux)
              (nongnu packages linux)
              (nongnu system linux-initrd))
 
 (use-service-modules desktop
+                     desktop-extra
                      networking
+                     virtualization
                      avahi
-                     dbus)
+                     dbus
+                     pm
+                     guix)
+
 (use-package-modules bootloaders
                      certs
                      shells)
+
+(define %base-services-custom
+  (modify-services %base-services
+                   (guix-service-type config =>
+                                      (guix-configuration
+                                       (inherit config)
+                                       (discover? #t)))))
 
 (operating-system
   (kernel linux)
@@ -40,22 +54,23 @@
   (users
    (cons* (user-account
            (name "john")
-           (shell zsh)
+           (shell (file-append zsh "/bin/zsh"))
            (group "users")
            (supplementary-groups
-            '("wheel" "netdev" "lp" "audio" "video")))
+            '("wheel" "netdev" "libvirt" "kvm" "lp" "audio" "video")))
           %base-user-accounts))
 
   (packages
    (cons*
     ;; for HTTPS access
     nss-certs
+    ntfs-3g
     %base-packages))
 
   (services
    (cons*
     (service sane-service-type)
-    polkit-wheel-service
+    polkit-wheel-nopass-service
     fontconfig-file-system-service
     (service wpa-supplicant-service-type)
     (service network-manager-service-type)
@@ -70,6 +85,23 @@
 
     (service ntp-service-type)
 
-    %base-services))
+    (service libvirt-service-type
+             (libvirt-configuration
+              (unix-sock-group "libvirt")
+	      (unix-sock-rw-perms "0777")))
+    (service virtlog-service-type)
+
+    (service thermald-service-type)
+    (service tlp-service-type
+             (tlp-configuration
+              (sched-powersave-on-bat? #t)
+              (sched-powersave-on-ac? #t)))
+
+    (service guix-publish-service-type
+             (guix-publish-configuration
+              (advertise? #t)
+              (host "0.0.0.0")))
+
+    %base-services-custom))
 
   (name-service-switch %mdns-host-lookup-nss))

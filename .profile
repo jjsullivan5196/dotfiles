@@ -11,6 +11,12 @@ unset EMACSLOADPATH
 GUIX_PROFILE="$HOME/.guix-profile"
 . "${GUIX_PROFILE}/etc/profile"
 
+export TERMINFO="${GUIX_PROFILE}/share/terminfo"
+
+# Emacs
+GUIX_PROFILE="$HOME/.config/emacs/init-package-profile"
+. "${GUIX_PROFILE}/etc/profile"
+
 # Current guix
 GUIX_PROFILE="$HOME/.config/guix/current"
 . "${GUIX_PROFILE}/etc/profile"

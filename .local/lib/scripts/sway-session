@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 
-export MOZ_ENABLE_WAYLAND=1
+# this is pretty bork right now
+export MOZ_ENABLE_WAYLAND=
+
 export XDG_CURRENT_DESKTOP=sway
 
 exec dbus-run-session sway

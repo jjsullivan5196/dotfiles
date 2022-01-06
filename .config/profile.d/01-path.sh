@@ -1,6 +1,8 @@
 source $HOME/.local/lib/scripts/util.sh
 
-export GUILE_LOAD_PATH="$HOME/.local/lib/guile:$GUILE_LOAD_PATH"
+GUILE_LOCAL_HOME="$HOME/.local/lib/guile"
+export GUILE_LOAD_PATH="$GUILE_LOCAL_HOME:$GUILE_LOAD_PATH"
+export GUIX_PACKAGE_PATH="$GUILE_LOCAL_HOME:$GUIX_PACKAGE_PATH"
 export CLOJURE_HOME="$XDG_DATA_HOME/clojure"
 export DOTNET_ROOT="$HOME/.dotnet"
 

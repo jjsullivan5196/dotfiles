@@ -1,52 +1,62 @@
-(use-modules (gnu packages)
-             (jsullivan emacs))
-
-(define emacs-init
-  (string-append (getenv "XDG_CONFIG_HOME") "/emacs/init.el"))
-
 (specifications->manifest
- (append
-  (list
-;; * GUI stuff
-   "sway"
-   "swayidle"
-   "xorg-server-xwayland"
-   "bemenu"
-   "i3blocks"
-   "slurp"
-   "grim"
-;; * Fonts
-   "font-dejavu"
-   "font-hack"
-   "font-google-noto"
-;; * Internet
-   "icecat"
-;; * Documents
-   "ghostscript"
-   "zathura"
-   "xournalpp"
-   "tesseract-ocr"
-;; * Multimedia
-   "pipewire"
-   "alsa-ucm-conf"
-   "wireplumber"
-   "pamixer"
-   "pavucontrol"
-   "imv"
-   "mpv"
-   "gimp"
-   "inkscape"
-   "darktable"
-;; * Tools
-   "p7zip"
-   "udisks"
-   "dbus"
-;; * Programming
-   "guile"
-   "guix")
-;; * Emacs
-  (cons*
-   "emacs"
-   "emacs-use-package"
-   "emacs-guix"
-   (init.el->specs emacs-init))))
+ (list
+  ;; * GUI stuff
+  "adwaita-icon-theme"
+  "gnome-icon-theme"
+  "sway"
+  "swayidle"
+  "brightnessctl"
+  "xorg-server-xwayland"
+  "bemenu"
+  "i3blocks"
+  "slurp"
+  "grim"
+  "wl-clipboard"
+  ;; * Fonts
+  "font-dejavu"
+  "font-hack"
+  "font-google-noto"
+  ;; * Internet
+  "icecat"
+  ;; * Documents
+  "ghostscript"
+  "zathura"
+  "xournalpp"
+  "tesseract-ocr"
+  "gnumeric"
+  ;; * Multimedia
+  "pipewire"
+  "alsa-ucm-conf"
+  "wireplumber"
+  "pamixer"
+  "pavucontrol"
+  "imv"
+  "mpv"
+  "gimp"
+  "inkscape"
+  "darktable"
+  ;; * Tools
+  "foot"
+  "p7zip"
+  "udisks"
+  "bluez"
+  "flatpak"
+  "network-manager"
+  "avahi"
+  "freerdp"
+  "libvirt"
+  "virt-manager"
+  "lxqt-policykit"
+  "dbus"
+  "dconf"
+  "openssh"
+  "turbostat"
+  "lm-sensors"
+  "tlp"
+  "ntfs-3g"
+  "debootstrap"
+  ;; * Programming
+  "git"
+  "guile"
+  "guix"
+  "racket"))
