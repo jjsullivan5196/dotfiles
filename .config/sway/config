@@ -1,3 +1,7 @@
+# send over portal env
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+
 set $white '#ffffff'
 set $base_color '#880033'
 set $second_color '#cc0033'

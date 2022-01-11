@@ -12,12 +12,17 @@
   "slurp"
   "grim"
   "wl-clipboard"
+  "xdg-desktop-portal"
+  "xdg-desktop-portal-wlr"
+  "wf-recorder"
+  "v4l-utils"
   ;; * Fonts
   "font-dejavu"
   "font-hack"
   "font-google-noto"
   ;; * Internet
   "icecat"
+  "hexchat"
   ;; * Documents
   "ghostscript"
   "zathura"

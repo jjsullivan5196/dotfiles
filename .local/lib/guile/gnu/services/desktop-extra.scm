@@ -16,7 +16,7 @@
       ,(plain-file
         "wheel-nopass.rules"
         "polkit.addRule(function(action, subject) {
-    subject.isInGroup('wheel') && return polkit.Result.YES;
+    if(subject.isInGroup('wheel')) return polkit.Result.YES;
 });
 ")))))
 
