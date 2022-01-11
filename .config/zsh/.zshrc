@@ -11,6 +11,9 @@
 # Global Order: zshenv, zprofile, zshrc, zlogin
 ################################################################################
 
+# don't bother if we're on a dumb terminal
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
 # USAGE
 # If you are using this file as your ~/.zshrc file, please use ~/.zshrc.pre
 # and ~/.zshrc.local for your own customisations. The former file is read
