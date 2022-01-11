@@ -9,6 +9,7 @@
 (use-service-modules desktop
                      desktop-extra
                      networking
+                     ssh
                      virtualization
                      avahi
                      dbus
@@ -86,6 +87,8 @@
               (unix-sock-group "libvirt")
 	      (unix-sock-rw-perms "0777")))
     (service virtlog-service-type)
+
+    (service openssh-service-type)
 
     (service guix-publish-service-type
              (guix-publish-configuration
