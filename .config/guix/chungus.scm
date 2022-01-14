@@ -6,42 +6,33 @@
              (nongnu packages linux)
              (nongnu system linux-initrd))
 
-(use-service-modules desktop
-                     desktop-extra
-                     linux
-                     ssh
-                     networking
-                     virtualization
-                     avahi
-                     dbus
-                     pm
-                     guix)
+(use-service-modules desktop desktop-extra linux linux-extra ssh networking
+                     virtualization avahi dbus pam-mount pm guix)
 
-(use-package-modules bootloaders
-                     certs
-                     shells)
+(use-package-modules bootloaders certs shells)
 
 (define %base-services-custom
-  (modify-services %base-services
-                   (guix-service-type config =>
-                                      (guix-configuration
-                                       (inherit config)
-                                       (discover? #t)
-                                       (authorized-keys
-                                        (cons* (local-file "./lem.pub")
-                                               %default-authorized-guix-keys))))))
+  (modify-services
+   %base-services
+   (guix-service-type config =>
+                      (guix-configuration
+                       (inherit config)
+                       (discover? #t)
+                       (authorized-keys
+                        (cons* (local-file "./lem.pub")
+                               %default-authorized-guix-keys))))))
 
 
-(define v4l-loopback-config
-  (plain-file "v4l-loopback.conf"
-              "options v4l2loopback exclusive_caps=1 card_label=VirtualVideoDevice"))
-
+(define modprobe-service
+  (service modprobe-service-type
+           `((,v4l2loopback-linux-module
+              (("exclusive_caps" "1")
+               ("card_label" "VirtualVideoDevice"))))))
 
 (operating-system
   (kernel linux)
   (initrd microcode-initrd)
   (firmware (list linux-firmware))
-  (kernel-loadable-modules (list v4l2loopback-linux-module))
 
   (host-name "chungus")
   (timezone "America/Los_Angeles")
@@ -57,6 +48,7 @@
             (device (uuid "0d5536ab-69be-4234-84df-e1d9c66598d3"))
             (mount-point "/")
             (type "ext4"))
+          xdg-rundir-file-system
           %base-file-systems))
 
   (users
@@ -77,26 +69,24 @@
 
   (services
    (cons*
-    (service kernel-module-loader-service-type
-             '("v4l2loopback"))
-    (simple-service 'v4l-loopback-config etc-service-type
-                    (list `("modprobe.d/v4l-loopback.conf"
-                            ,v4l-loopback-config)))
-    (service sane-service-type)
-    polkit-wheel-nopass-service
-    fontconfig-file-system-service
-    (service wpa-supplicant-service-type)
-    (service network-manager-service-type)
-    (bluetooth-service)
+    modprobe-service
 
-    (service avahi-service-type)
-    (udisks-service)
-    (service upower-service-type)
     (service polkit-service-type)
-    (elogind-service)
+    polkit-wheel-nopass-service
+    xdg-rundir-user-mount-service
+    seatd-service
     (dbus-service)
 
     (service ntp-service-type)
+    (service sane-service-type)
+    (service wpa-supplicant-service-type)
+    (service network-manager-service-type)
+    (service openssh-service-type)
+    (service avahi-service-type)
+
+    (service guix-publish-service-type
+             (guix-publish-configuration
+              (advertise? #f)))
 
     (service libvirt-service-type
              (libvirt-configuration
@@ -108,14 +98,15 @@
     (service tlp-service-type
              (tlp-configuration
               (sched-powersave-on-bat? #t)
-              (sched-powersave-on-ac? #t)
-              (cpu-boost-on-bat? #f)))
+              (sched-powersave-on-ac? #f)
+              (cpu-boost-on-bat? #f)
+              (cpu-boost-on-ac? #t)))
 
-    (service openssh-service-type)
+    fontconfig-file-system-service
 
-    (service guix-publish-service-type
-             (guix-publish-configuration
-              (advertise? #f)))
+    (bluetooth-service)
+    (udisks-service)
+    (service upower-service-type)
 
     %base-services-custom))
 
