@@ -9,4 +9,5 @@
   sleep 1
   pipewire-pulse &
   wireplumber &
+  pipewire -c "${XDG_CONFIG_HOME}/pipewire/filter-chain/rnnoise.conf"
 } >/dev/null 2>&1 &

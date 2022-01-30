@@ -1,7 +1,27 @@
 (define-module (jsullivan util)
   #:use-module (ice-9 match)
+  #:use-module (ice-9 ftw)
   #:use-module (srfi srfi-26)
-  #:use-module (srfi srfi-41))
+  #:use-module (srfi srfi-41)
+  #:export (-> ->>))
+
+;; Thread FORM as the second position of the following FORMS.
+(define-syntax ->
+  (syntax-rules ()
+    ((-> form (first rest ...) forms ...)
+     (-> (first form rest ...) forms ...))
+    ((-> form first forms ...)
+     (-> (first form) forms ...))
+    ((-> form)
+     form)))
+
+;; Thread FORM as the last position of the following FORMS.
+(define-syntax ->>
+  (syntax-rules ()
+    ((->> form (first rest ...) forms ...)
+     (->> (first rest ... form) forms ...))
+    ((->> forms ...)
+     (-> forms ...))))
 
 (define-public (plist-find key)
   "Create a function that finds the first KEY value in a plist."

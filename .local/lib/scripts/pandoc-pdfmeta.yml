@@ -2,6 +2,8 @@
 pagestyle: empty
 linkstyle: type
 linkcolor: blue
+fontfamily: plex-sans
+fontfamilyoptions: sfdefault
 geometry:
 - margin=1.5cm
 ---

@@ -11,6 +11,13 @@ unset EMACSLOADPATH
 GUIX_PROFILE="$HOME/.guix-profile"
 . "${GUIX_PROFILE}/etc/profile"
 
+if [ -d "${GUIX_PROFILE}/etc/profile.d" ]; then
+	for f in "${GUIX_PROFILE}/etc/profile.d"; do
+		[ -r "$f" ] && . "$f"
+	done
+	unset f
+fi
+
 export TERMINFO="${GUIX_PROFILE}/share/terminfo"
 
 # Emacs

@@ -65,7 +65,7 @@
 (define-public seatd-service
   (simple-service 'seatd-service shepherd-root-service-type
                   (list (shepherd-service
-                         (provision '(seatd))
+                         (provision '(seatd elogind))
                          (start #~(make-forkexec-constructor
                                    (list #$(file-append seatd "/bin/seatd") "-g" "users")))
                          (stop #~(make-kill-destructor))))))

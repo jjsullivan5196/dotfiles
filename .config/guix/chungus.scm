@@ -1,27 +1,28 @@
-(use-modules (gnu)
+(use-modules (guix gexp)
+             (gnu system file-systems)
+             (gnu system setuid)
+             (gnu)
              (gnu services)
              (gnu system nss)
-             (guix gexp)
 	           (gnu packages linux)
              (nongnu packages linux)
-             (nongnu system linux-initrd))
+             (nongnu system linux-initrd)
+             (jsullivan guix-util))
 
-(use-service-modules desktop desktop-extra linux linux-extra ssh networking
-                     virtualization avahi dbus pam-mount pm guix)
+(use-service-modules desktop cups desktop-extra linux linux-extra ssh networking
+                     virtualization docker avahi dbus pam-mount pm guix)
 
 (use-package-modules bootloaders certs shells)
 
 (define %base-services-custom
   (modify-services
    %base-services
+   (mingetty-service-type config =>
+                          (auto-login-to-tty config "tty1" "john"))
    (guix-service-type config =>
                       (guix-configuration
                        (inherit config)
-                       (discover? #t)
-                       (authorized-keys
-                        (cons* (local-file "./lem.pub")
-                               %default-authorized-guix-keys))))))
-
+                       (discover? #t)))))
 
 (define modprobe-service
   (service modprobe-service-type
@@ -41,15 +42,17 @@
   (bootloader
    (bootloader-configuration
     (bootloader grub-bootloader)
+    (terminal-outputs '(console))
     (targets '("/dev/disk/by-id/ata-Samsung_SSD_860_EVO_500GB_S3Z1NB0K105153X"))))
 
   (file-systems
-   (cons* (file-system
-            (device (uuid "0d5536ab-69be-4234-84df-e1d9c66598d3"))
-            (mount-point "/")
-            (type "ext4"))
-          xdg-rundir-file-system
-          %base-file-systems))
+   (append (list (file-system
+                   (device (uuid "0d5536ab-69be-4234-84df-e1d9c66598d3"))
+                   (mount-point "/")
+                   (type "ext4"))
+                 xdg-rundir-file-system)
+           %control-groups
+           %base-file-systems))
 
   (users
    (cons* (user-account
@@ -57,7 +60,7 @@
            (shell (file-append zsh "/bin/zsh"))
            (group "users")
            (supplementary-groups
-            '("wheel" "netdev" "libvirt" "kvm" "lp" "audio" "video")))
+            '("wheel" "netdev" "docker" "libvirt" "kvm" "lp" "audio" "video")))
           %base-user-accounts))
 
   (packages
@@ -66,6 +69,19 @@
     nss-certs
     ntfs-3g
     %base-packages))
+
+  (sudoers-file
+   (plain-file "sudoers" "\
+root ALL=(ALL) ALL
+%wheel ALL = NOPASSWD: ALL"))
+
+  (setuid-programs
+    (append
+      (list (file-like->setuid-program
+	      (file-append
+		(specification->package "swaylock")
+		"/bin/swaylock")))
+      %setuid-programs))
 
   (services
    (cons*
@@ -83,16 +99,19 @@
     (service network-manager-service-type)
     (service openssh-service-type)
     (service avahi-service-type)
+    (service cups-service-type)
 
     (service guix-publish-service-type
              (guix-publish-configuration
-              (advertise? #f)))
+              (advertise? #t)))
 
     (service libvirt-service-type
              (libvirt-configuration
               (unix-sock-group "libvirt")
 	      (unix-sock-rw-perms "0777")))
     (service virtlog-service-type)
+
+    (service docker-service-type)
 
     (service thermald-service-type)
     (service tlp-service-type
@@ -104,7 +123,7 @@
 
     fontconfig-file-system-service
 
-    (bluetooth-service)
+    (bluetooth-service #:auto-enable? #t)
     (udisks-service)
     (service upower-service-type)
 
