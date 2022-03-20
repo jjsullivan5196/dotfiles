@@ -1,3 +1,6 @@
 [user]
 	name = John Sullivan
 	email = jsullivan@csumb.edu
+	signingkey = 0D856F27E9C99C13680D5F77B33771C49318D9F0
+[commit]
+	gpgsign = true

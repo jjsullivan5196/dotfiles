@@ -10,9 +10,9 @@
              (jsullivan guix-util))
 
 (use-service-modules desktop cups desktop-extra linux linux-extra ssh networking
-                     virtualization docker avahi dbus pam-mount pm guix)
+                     virtualization docker avahi dbus pam-mount pm guix lio)
 
-(use-package-modules bootloaders certs shells)
+(use-package-modules bootloaders certs shells firmware-extra)
 
 (define %base-services-custom
   (modify-services
@@ -68,6 +68,7 @@
     ;; for HTTPS access
     nss-certs
     ntfs-3g
+    jmtpfs
     %base-packages))
 
   (sudoers-file
@@ -100,16 +101,22 @@ root ALL=(ALL) ALL
     (service openssh-service-type)
     (service avahi-service-type)
     (service cups-service-type)
+    (service lio-target-service-type)
 
     (service guix-publish-service-type
              (guix-publish-configuration
-              (advertise? #t)))
+              (advertise? #t)
+              (host "0.0.0.0")))
 
     (service libvirt-service-type
              (libvirt-configuration
               (unix-sock-group "libvirt")
 	      (unix-sock-rw-perms "0777")))
     (service virtlog-service-type)
+    (extra-special-file "/usr/share/OVMF/OVMF_CODE.fd"
+                        (file-append ovmf-with-vars "/share/firmware/ovmf_x64.bin"))
+    (extra-special-file "/usr/share/OVMF/OVMF_VARS.fd"
+                        (file-append ovmf-with-vars "/share/firmware/ovmf_vars_x64.bin"))
 
     (service docker-service-type)
 
